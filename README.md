@@ -11,7 +11,7 @@ I codici degli enti si trovano qui: http://www.rgs.mef.gov.it/VERSIONE-I/e-GOVER
 ### Codici degli enti (da https://github.com/openfuffa/soldipubblici )
 
 ```
-curl -X GET http://soldipubblici.gov.it/it/chi/search/%20  \                         ⏎
+curl -X GET http://soldipubblici.gov.it/it/chi/search/%20  \
 -H "Accept: application/json, text/javascript, */*; q=0.01" \
 -H "X-Requested-With: XMLHttpRequest" > codici_ente.json
 ```
