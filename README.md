@@ -22,7 +22,7 @@ Il valore ritornato è un array JSON
 
 ## Esempio di codice scraper python
 
-<pre>
+```python
 import zlib
 import urllib
 import urllib2
@@ -52,8 +52,14 @@ def scrapeSIOPE(comparto, ente,chi):
 if __name__=='__main__':
         parsed = json.loads(scrapeSIOPE('PRO',727386))
         print json.dumps(parsed,indent=4)
-</pre>
+```
 
+# Risultato dello scrape
 
+## Comuni
+
+Lo scrape dei comuni al 2014-12-22 è reperibile in formato SQLITE3 qui: http://www.matteofortini.it/SOD/soldipubblici/comuniSIOPE_2014-12-22.sqlite3
+
+La licenza di distribuzione dei dati è CC-BY 3.0.
 
 
