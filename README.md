@@ -98,10 +98,44 @@ if __name__=='__main__':
 
 ## Comuni
 
+### Prima versione ottenuta tramite richieste al portale
+
 Lo scrape dei comuni al 2014-12-22 è reperibile in formato SQLITE3 qui: http://www.matteofortini.it/SOD/soldipubblici/comuniSIOPE_2014-12-22.sqlite3
 
 Lo scrape del DB completo al 2014-12-22 è reperibile in formato SQLITE3 qui:
 http://www.matteofortini.it/SOD/soldipubblici/allSIOPE_2014-12-22.sqlite3
+
+### Seconda versione ottenuta dai dati RAW distribuiti
+
+Il portale soldipubblici.gov.it ha successivamente pubblicato i dati in formato CSV a questo link http://soldipubblici.gov.it/it/developers ed è stato possibile realizzare un nuovo DB con le informazioni complete. Una delle novità riguarda il dettaglio dei dati, che ora sono mensili e non annuali.
+
+Utilizzando [spatialite](http://www.gaia-gis.it/gaia-sins/) è stato possibile importare facilmente i CSV come tabelle virtuali e quindi analizzare i dati.
+
+Si può scaricare questo file http://www.matteofortini.it/SOD/soldipubblici/SIOPEConvert.spatialite che connette i file CSV e espone alcune view che formattano e danno i nomi alle colonne, siccome i CSV (almeno quelli forniti al 2015-01-02) non contengono header.
+
+Per utilizzarlo occorre scaricare i file http://soldipubblici.gov.it/data/Siope-anagrafiche.zip e http://soldipubblici.gov.it/data/Siope-dati.zip ed estrarre i file contenuti in una cartella anagrafiche e una cartella dati, per esempio da linea di comando:
+```
+mkdir download
+cd download
+wget http://soldipubblici.gov.it/data/Siope-anagrafiche.zip
+wget http://soldipubblici.gov.it/data/Siope-dati.zip
+cd ..
+mkdir anagrafiche
+cd anagrafiche
+unzip ../download/Siope-anagrafiche.zip
+cd ..
+mkdir dati
+cd dati
+unzip ../download/Siope-dati.zip
+cd ..
+wget http://www.matteofortini.it/SOD/soldipubblici/SIOPEConvert.spatialite
+spatialite SIOPEConvert.spatialite
+
+SELECT * FROM sp_dati_ANAG_ENTI_SIOPE;
+```
+
+Una tabella con le statistiche annuali per ogni comune e voce di spesa è scaricabile qui: http://www.matteofortini.it/SOD/soldipubblici/spese_pro_capite_comuni_al_2015-01-02.csv
+
 
 La licenza di distribuzione dei dati è CC-BY 3.0.
 
